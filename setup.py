@@ -21,7 +21,7 @@ setup(
 
 	url="https://github.com/nixonjoshua98/mangakatana",
 
-	download_url="https://github.com/nixonjoshua98/mangakatana/archive/0.0.1.tar.gz",
+	download_url="https://github.com/nixonjoshua98/mangakatana/archive/0.0.2.tar.gz",
 
 	keywords=["manga", "manganelo", "scrapper", "web", "mangakakalot", "thread", "comic", "manhwa", "mangakatana"],
 
