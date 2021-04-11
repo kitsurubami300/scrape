@@ -1,9 +1,12 @@
+from mangakatana.searchresult import SearchResult
+
+from mangakatana import utils
+
 
 def search(*, title: str):
 	from bs4 import BeautifulSoup
 
 	from mangakatana import siterequests
-	from mangakatana.searchresult import SearchResult
 
 	r = siterequests.search(title=title)
 
@@ -15,6 +18,4 @@ def search(*, title: str):
 
 
 def chapter_list(*, url: str):
-	from mangakatana import utils
-
 	return utils.chapters_from_url(url)
