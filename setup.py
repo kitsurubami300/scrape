@@ -9,7 +9,7 @@ def read_file(file):
 setup(
 	name="mangakatana",
 	packages=find_packages(),
-	version="0.1",
+	version="0.1.1",
 	license="MIT",
 
 	description="An API to query the mangatkatana.com site using BeautifulSoup",
@@ -21,7 +21,7 @@ setup(
 
 	url="https://github.com/nixonjoshua98/mangakatana",
 
-	download_url="https://github.com/nixonjoshua98/mangakatana/archive/0.1.tar.gz",
+	download_url="https://github.com/nixonjoshua98/mangakatana/archive/0.1.1.tar.gz",
 
 	keywords=["manga", "manganelo", "scrapper", "web", "mangakakalot", "comic", "manhwa", "mangakatana"],
 
