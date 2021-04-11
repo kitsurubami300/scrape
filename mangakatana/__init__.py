@@ -18,9 +18,3 @@ def chapter_list(*, url: str):
 	from mangakatana import utils
 
 	return utils.chapters_from_url(url)
-
-
-__ALL__ = (
-	"search",
-	"chapteR_list"
-)
