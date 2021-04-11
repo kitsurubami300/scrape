@@ -5,7 +5,9 @@ def read_file(file):
 	with open(file, "r") as fh:
 		return fh.read()
 
+
 VERSION = "0.1.1"
+
 
 setup(
 	name="mangakatana",
