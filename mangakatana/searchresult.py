@@ -1,11 +1,11 @@
 import functools as ft
 
-from mangakatana import utils
+from mangakatana.chapterlist import ChapterList
 
 
 class SearchResult:
 	def __init__(self, soup):
-		self._soup 		= soup
+		self._soup = soup
 		self._page_soup = None
 
 	@ft.cached_property
@@ -18,4 +18,4 @@ class SearchResult:
 	def url(self) -> str: return self._soup.find("h3", class_="title").find("a")["href"]
 
 	@ft.lru_cache()
-	def chapter_list(self): return utils.chapters_from_url(self.url)
+	def chapter_list(self): return ChapterList(self.url).get()

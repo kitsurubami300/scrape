@@ -1,6 +1,6 @@
-from mangakatana.searchresult import SearchResult
 
-from mangakatana import utils
+from mangakatana.searchresult import SearchResult
+from mangakatana.chapterlist import Chapter, ChapterList
 
 
 def search(*, title: str):
@@ -18,4 +18,4 @@ def search(*, title: str):
 
 
 def chapter_list(*, url: str):
-	return utils.chapters_from_url(url)
+	return ChapterList(url).get()

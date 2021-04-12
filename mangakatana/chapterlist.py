@@ -1,6 +1,10 @@
 import re
 import functools as ft
 
+import requests
+
+from bs4 import BeautifulSoup
+
 
 class Chapter:
 	def __init__(self, soup):
@@ -14,3 +18,14 @@ class Chapter:
 
 	@ft.cached_property
 	def num(self): return float(re.search("[0-9]+", self.title).group())
+
+
+class ChapterList:
+	def __init__(self, url):
+		self.url = url
+
+	@ft.lru_cache()
+	def get(self):
+		page_soup = BeautifulSoup(requests.get(url=self.url).content, "html.parser")
+
+		return [Chapter(tr) for tr in page_soup.find_all("tr")][::-1]
