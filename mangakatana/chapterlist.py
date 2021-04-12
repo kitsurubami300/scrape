@@ -17,7 +17,8 @@ class Chapter:
 	def url(self): return self._soup.find("a")["href"]
 
 	@ft.cached_property
-	def num(self): return float(re.search("[0-9]+", self.title).group())
+	def num(self):
+		return float(re.search("[\d\.\d]+", self.title).group())
 
 
 class ChapterList:
