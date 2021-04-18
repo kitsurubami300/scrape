@@ -1,16 +1,25 @@
 [![Downloads](https://pepy.tech/badge/mangakatana)](https://pepy.tech/project/mangakatana) [![Downloads](https://pepy.tech/badge/mangakatana/month)](https://pepy.tech/project/mangakatana/month) [![Downloads](https://pepy.tech/badge/mangakatana/week)](https://pepy.tech/project/mangakatana/week)
 
-# Mangakatana
+# Unofficial Mangakatana API
 
+###### Package to scrape the Mangakatana website. Want to contribute? Pull requests are encouraged!
+
+Installation
+-
+**Python 3.7+**
+```cmd
+pip install manganelo
+```
+
+Examples
+-
 ```python
-import mangakatana as mankat
+import mangakatana
 
-result = mankat.search(title="Naruto")
+results = mangakatana.search(title="Naruto")
 
-second = result[1]
+first = results[0]
 
-print(second.title, second.url, second.status)
-
-for chapter in second.chapter_list():
-	print(chapter.title, chapter.url)
+chapters = first.chapter_list()
+# mangakatana.chapter_list(url=first.url)
 ```

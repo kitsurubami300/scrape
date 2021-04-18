@@ -1,9 +1,11 @@
 import re
+import ast
+
 import functools as ft
 
-import requests
-
 from bs4 import BeautifulSoup
+
+from mangakatana import siterequests
 
 
 class Chapter:
@@ -14,11 +16,10 @@ class Chapter:
 	def title(self): return self._soup.find("a").text
 
 	@ft.cached_property
-	def url(self): return self._soup.find("a")["href"]
+	def url(self): return self._soup.find("a").get("href")
 
 	@ft.cached_property
-	def num(self):
-		return float(re.search("[\d\.\d]+", self.title).group())
+	def chapter(self): return ast.literal_eval(re.search("[\d\.\d]+", self.title).group())
 
 
 class ChapterList:
@@ -27,6 +28,6 @@ class ChapterList:
 
 	@ft.lru_cache()
 	def get(self):
-		page_soup = BeautifulSoup(requests.get(url=self.url).content, "html.parser")
+		page_soup = BeautifulSoup(siterequests.get(self.url).content, "html.parser")
 
 		return [Chapter(tr) for tr in page_soup.find_all("tr")][::-1]

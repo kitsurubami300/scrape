@@ -5,7 +5,7 @@ result = mankat.search(title="Naruto")
 
 first = result[0]
 
-print(first.title, first.url, first.status, sep=" | ")
+print(first.title, first.url)
 
 for chapter in first.chapter_list():
-	print(chapter.num, chapter.title, chapter.url, sep=" | ")
+	print(chapter.chapter, chapter.title, chapter.url)
