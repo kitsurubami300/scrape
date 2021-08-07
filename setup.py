@@ -6,7 +6,7 @@ def read_file(file):
 		return fh.read()
 
 
-VERSION = "0.1.1"
+VERSION = "0.2"
 
 
 setup(

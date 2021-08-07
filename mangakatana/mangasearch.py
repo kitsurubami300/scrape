@@ -25,25 +25,15 @@ class SearchResult:
 	def chapter_list(self): return ChapterList(self.url).get()
 
 
-class MangaSearch:
-	def __init__(self, title: str):
-		self._raw_title = title
+def perform_search(title):
 
-	def get(self):
-		r = self._send_request()
-
-		return self._extract_response(r)
-
-	def _send_request(self):
-		return siterequests.search(self._validate_title(self._raw_title))
-
-	def _extract_response(self, resp) -> list:
-		soup = BeautifulSoup(resp.content, "html.parser")
-
-		return [SearchResult(ele) for ele in soup.find_all("div", class_="item")]
-
-	@staticmethod
-	def _validate_title(title: str) -> str:
+	def validate_title() -> str:
 		allowed_characters: str = string.ascii_letters + string.digits + "_"
 
 		return "".join([char.lower() for char in title.replace(" ", "_") if char in allowed_characters])
+
+	r = siterequests.search(validate_title())
+
+	soup = BeautifulSoup(r.content, "html.parser")
+
+	return [SearchResult(ele) for ele in soup.find_all("div", class_="item")]

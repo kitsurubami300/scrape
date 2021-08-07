@@ -1,8 +1,8 @@
 
 def search(*, title: str):
-	from mangakatana.mangasearch import MangaSearch
+	from mangakatana import mangasearch
 
-	return MangaSearch(title).get()
+	return mangasearch.perform_search(title)
 
 
 def chapter_list(*, url: str):
