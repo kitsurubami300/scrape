@@ -1,11 +1,7 @@
 
 import mangakatana as mankat
 
-result = mankat.search(title="Naruto")
+result = mankat.search("nar")
 
-first = result[0]
-
-print(first.title, first.url)
-
-for chapter in first.chapter_list():
-	print(chapter.chapter, chapter.title, chapter.url)
+for r in result:
+	print(r.title)
