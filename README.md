@@ -8,7 +8,7 @@ Installation
 -
 **Python 3.7+**
 ```cmd
-pip install manganelo
+pip install mangakatana
 ```
 
 Examples
