@@ -4,7 +4,7 @@
 
 Installation
 -
-**Python 3.9+**
+**Python 3.7+**
 ```cmd
 pip install mangakatana
 ```
