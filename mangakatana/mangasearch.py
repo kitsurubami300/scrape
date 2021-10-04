@@ -1,6 +1,5 @@
 import string
-
-import functools as ft
+import dataclasses
 
 from bs4 import BeautifulSoup
 
@@ -8,32 +7,29 @@ from mangakatana import siterequests
 from mangakatana.chapterlist import ChapterList
 
 
+@dataclasses.dataclass(frozen=True)
 class SearchResult:
-	def __init__(self, soup):
-		self._soup = soup
+	title: str
+	url: str
 
-	@ft.cached_property
-	def title(self) -> str: return self._soup.find("h3", class_="title").find("a").text
+	def chapter_list(self):
+		return ChapterList(self.url).get()
 
-	@ft.cached_property
-	def status(self) -> str: return self._soup.find("div", class_="status completed uk-hidden-small").text.strip()
-
-	@ft.cached_property
-	def url(self) -> str: return self._soup.find("h3", class_="title").find("a").get("href")
-
-	@ft.lru_cache()
-	def chapter_list(self): return ChapterList(self.url).get()
+	@classmethod
+	def create_from_soup(cls, soup):
+		return cls(
+			title=soup.find("h3", class_="title").find("a").text,
+			url=soup.find("h3", class_="title").find("a").get("href")
+		)
 
 
 def perform_search(title):
+	allowed_characters: str = string.ascii_letters + string.digits + "_+"
 
-	def validate_title() -> str:
-		allowed_characters: str = string.ascii_letters + string.digits + "_"
+	title = "".join([char for char in title.replace(" ", "+") if char in allowed_characters]).lower()
 
-		return "".join([char.lower() for char in title.replace(" ", "_") if char in allowed_characters])
-
-	r = siterequests.search(validate_title())
+	r = siterequests.search(title)
 
 	soup = BeautifulSoup(r.content, "html.parser")
 
-	return [SearchResult(ele) for ele in soup.find_all("div", class_="item")]
+	return [SearchResult.create_from_soup(ele) for ele in soup.find_all("div", class_="item")]

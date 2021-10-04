@@ -6,7 +6,7 @@ def read_file(file):
 		return fh.read()
 
 
-VERSION = "0.2"
+VERSION = "0.3"
 
 
 setup(
@@ -15,7 +15,7 @@ setup(
 	version=VERSION,
 	license="MIT",
 
-	description="An API to query the mangatkatana.com site using BeautifulSoup",
+	description="Query the mangatkatana.com site using BeautifulSoup",
 	long_description=read_file("README.md"),
 	long_description_content_type="text/markdown",
 
